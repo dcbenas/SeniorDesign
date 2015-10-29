@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Albums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mediatype</th>
+      <th>Recordlabel</th>
+      <th>Albumtitle</th>
+      <th>Artist</th>
+      <th>Recordingyear</th>
+      <th>Spotify</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.mediaType %></td>
+        <td><%= album.recordLabel %></td>
+        <td><%= album.albumTitle %></td>
+        <td><%= album.artist %></td>
+        <td><%= album.recordingYear %></td>
+        <td><%= album.spotify %></td>
+        <td><%= album.notes %></td>
+        <td><%= link_to 'Show', album %></td>
+        <td><%= link_to 'Edit', edit_album_path(album) %></td>
+        <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Album', new_album_path %>
