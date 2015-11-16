@@ -1,39 +1,74 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Albums</h1>
+<div class="row"> 
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <h1>Incoming Albums</h1>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Mediatype</th>
-      <th>Recordlabel</th>
-      <th>Albumtitle</th>
-      <th>Artist</th>
-      <th>Recordingyear</th>
-      <th>Spotify</th>
-      <th>Notes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
+<div class="row">
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div id="sidebar">
+      <ul class="list-group">
+        <li class="list-group-item">
+         <%= link_to 'Add An Album', new_album_path %>
+       </li>
+       <li class="list-group-item">
+         <span class="badge">8</span>
 
-  <tbody>
-    <% @albums.each do |album| %>
-      <tr>
-        <td><%= album.mediaType %></td>
-        <td><%= album.recordLabel %></td>
-        <td><%= album.albumTitle %></td>
-        <td><%= album.artist %></td>
-        <td><%= album.recordingYear %></td>
-        <td><%= album.spotify %></td>
-        <td><%= album.notes %></td>
-        <td><%= link_to 'Show', album %></td>
-        <td><%= link_to 'Edit', edit_album_path(album) %></td>
-        <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+         <%= link_to 'Incoming Albums', albums_path %>
+         <!-- <a href="/app/views/albums/index.html.erb">Incoming Albums</a> -->
+       </li>
+       <li class="list-group-item">
+         <span class="badge">3</span>
+         <a href="claimed.html">Your Claimed Albums</a>
+       </li>
+         <!-- <li class="list-group-item">
+            <a href="viz.html">Listeners</a>
+          </li> -->
+        </ul>
+    </div>
+  </div>
 
+      <!-- table -->
+  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-4">
+      <table class="table table-bordered table-hover table-responsive">
+        <thead>
+          <tr>
+            <th>Media Type</th>
+            <th>Record Label</th>
+            <th>Album Title</th>
+            <th>Artist</th>
+            <th>Recording Year</th>
+            <th>Spotify</th>
+            <th>Notes</th>
+            <!-- <th>Show</th> -->
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <div class="row">
+          <tbody>
+            <% @albums.each do |album| %>
+            <tr>
+              <td><%= album.mediaType %></td>
+              <td><%= album.recordLabel %></td>
+              <td><%= album.albumTitle %></td>
+              <td><%= album.artist %></td>
+              <td><%= album.recordingYear %></td>
+              <td><%= album.spotify %></td>
+              <td><%= album.notes %></td>
+              <!-- <td><%= link_to 'Show', album %></td> -->
+              <td><%= link_to 'Edit', edit_album_path(album) %></td>
+              <td><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </div>
+      </table>
+  </div> 
+</div>
+</div>
 <br>
 
-<%= link_to 'New Album', new_album_path %>
