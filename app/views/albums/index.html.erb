@@ -12,20 +12,18 @@
     <div id="sidebar">
       <ul class="list-group">
         <li class="list-group-item">
-         <%= link_to 'Add An Album', new_album_path %>
-       </li>
-       <li class="list-group-item">
-         <span class="badge">8</span>
-
-         <%= link_to 'Incoming Albums', albums_path %>
-         <!-- <a href="/app/views/albums/index.html.erb">Incoming Albums</a> -->
-       </li>
-       <li class="list-group-item">
-         <span class="badge">3</span>
-         <a href="claimed.html">Your Claimed Albums</a>
-       </li>
-         <!-- <li class="list-group-item">
-            <a href="viz.html">Listeners</a>
+            <%= link_to 'Home', root_path %>
+          </li>
+          <li class="list-group-item">
+            <%= link_to 'Add An Album', new_album_path %>
+          </li>
+          <li class="list-group-item">
+            <!-- <span class="badge">8</span> -->
+            <%= link_to 'Incoming Albums', albums_path %>
+          </li>
+          <!-- <li class="list-group-item">
+            <span class="badge">3</span>
+            <a href="claimed.html">Your Claimed Albums</a>
           </li> -->
         </ul>
     </div>
@@ -43,9 +41,9 @@
             <th>Recording Year</th>
             <th>Spotify</th>
             <th>Notes</th>
-            <!-- <th>Show</th> -->
+            <th>Program</th>
             <th>Edit</th>
-            <th>Delete</th>
+            <th>Reject</th>
           </tr>
         </thead>
         <div class="row">
@@ -59,9 +57,9 @@
               <td><%= album.recordingYear %></td>
               <td><a href=<%= album.spotify %>>Listen Here!</a></td>
               <td><%= album.notes %></td>
-              <!-- <td><%= link_to 'Show', album %></td> -->
+              <td><%= link_to 'Program', new_track_path %></td>
               <td><%= link_to 'Edit', edit_album_path(album) %></td>
-              <td><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Reject', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
             <% end %>
           </tbody>

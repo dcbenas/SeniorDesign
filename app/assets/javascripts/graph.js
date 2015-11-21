@@ -1,6 +1,6 @@
 
 
-var block_number = 70;
+var block_number = 40;
 
 function displayHeatmap(filter) {
   // Rewrite heatmap title with appropriate text
@@ -9,7 +9,7 @@ function displayHeatmap(filter) {
   // Remove previous chart
   d3.select("svg").remove();
   // Render heatmap 
-  d3.csv("show_data.csv",
+  d3.csv("/show_data.csv",
     function(d) { 
       // switch heatmap data source based on button clicked
       switch (filter) {
@@ -17,7 +17,7 @@ function displayHeatmap(filter) {
           return {
             day: +d.day,
             hour: +d.hour,
-            total: +d.listeners + +d.pageviews + +d.callerlog,
+            total: +d.listeners,
             description: d.description,
             showName: d.showName,
             slug: d.slug,
@@ -120,9 +120,7 @@ function displayHeatmap(filter) {
         .offset([0,0])
         .html(function(d) {
           return d.showName + "<br>" +
-                 "Listeners: " + d.listeners + "<br>" + 
-                 "Pageviews: " + d.pageviews + "<br>" +
-                 "Callers: " + d.callerlog;
+                 "Listeners: " + d.total + "<br>";
         });
       // render heatmap
       var heatMap = svg.selectAll(".hour")
@@ -191,30 +189,37 @@ function displayHeatmap(filter) {
     $("#listener_chart").html("");
     // Listener chart
     // Uses dimple library with custom fonts, data source, ordering, animation
-    var svg = dimple.newSvg("#listener_chart", 720, 240);
-    var myChart = new dimple.chart(svg, data);
-    myChart.defaultColors = [
-      new dimple.color("#60D7E6")
-    ]; 
-    myChart.setBounds(50, 30, 640, 160);
-    var x = myChart.addCategoryAxis("x", ["day", "hour"]);
-    x.addGroupOrderRule([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]);
-    x.fontSize = "12px";
-    x.fontFamily = "Open Sans";
-    var y = myChart.addMeasureAxis("y", type);
-    y.fontSize = "12px";
-    y.fontFamily = "Open Sans";
-    var s = myChart.addSeries(null, dimple.plot.line);
-    // Customized tooltips with interactivity with heatmap
-    s.getTooltipText = function(e){
-      $("rect[hour=" + e["xField"][1] + '][day='+ e["x"] + "]").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-      return [dayOfWeekAsString(e["x"]), "Hour: " + e["xField"][1], "Listeners:" + e["yValueList"][0]];
-    }
-    myChart.draw();
+    //var svg = dimple.newSvg("#listener_chart", 720, 240);
+    // var myChart = new dimple.chart(svg, data);
+    // myChart.defaultColors = [
+    //   new dimple.color("#60D7E6")
+    // ]; 
+    // myChart.setBounds(50, 30, 640, 160);
+    // var x = myChart.addCategoryAxis("x", ["day", "hour"]);
+    // x.addGroupOrderRule([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]);
+    // x.fontSize = "12px";
+    // x.fontFamily = "Open Sans";
+    // var y = myChart.addMeasureAxis("y", type);
+    // y.fontSize = "12px";
+    // y.fontFamily = "Open Sans";
+    // var s = myChart.addSeries(null, dimple.plot.line);
+    // // Customized tooltips with interactivity with heatmap
+    // s.getTooltipText = function(e){
+    //   $("rect[hour=" + e["xField"][1] + '][day='+ e["x"] + "]").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    //   return [dayOfWeekAsString(e["x"]), "Hour: " + e["xField"][1], "Listeners:" + e["yValueList"][0]];
+    // }
+    // myChart.draw();
   });
 }
 // Display all by default
-displayHeatmap("Pageviews, Callers, & Online Listeners");
+var ready;
+ready = function() {
+  displayHeatmap("Pageviews, Callers, & Online Listeners");
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
 
 
 

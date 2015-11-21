@@ -11,35 +11,63 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :artist %><br>
-    <%= f.text_field :artist %>
-  </div>
-  <div class="field">
-    <%= f.label :format %><br>
-    <%= f.text_field :format %>
-  </div>
-  <div class="field">
-    <%= f.label :explicit %><br>
-    <%= f.check_box :explicit %>
-  </div>
-  <div class="field">
-    <%= f.label :automation %><br>
-    <%= f.check_box :automation %>
-  </div>
-  <div class="field">
-    <%= f.label :frequency %><br>
-    <%= f.number_field :frequency %>
-  </div>
-  <div class="field">
-    <%= f.label :album_id %><br>
-    <%= f.text_field :album_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <div class="container">
+    <div class"row">
+      <div class="col-xs-3">
+        <div id="sidebar">
+      <ul class="list-group">
+        <li class="list-group-item">
+            <%= link_to 'Home', root_path %>
+          </li>
+          <li class="list-group-item">
+            <%= link_to 'Add An Album', new_album_path %>
+          </li>
+          <li class="list-group-item">
+            <!-- <span class="badge">8</span> -->
+            <%= link_to 'Incoming Albums', albums_path %>
+          </li>
+          <!-- <li class="list-group-item">
+            <span class="badge">3</span>
+            <a href="claimed.html">Your Claimed Albums</a>
+          </li> -->
+      </ul>
+    </div>
+      </div>
+      <div class="col-xs-9">
+        <div class="field form-group">
+          <%= f.label :name, 'Name' %><br>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :artist, 'Artist' %><br>
+          <%= f.text_field :artist %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :format, 'Format' %><br>
+          <%= f.text_field :format %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :explicit, 'Explicit' %><br>
+          <%= f.check_box :explicit %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :automation, 'Automation' %><br>
+          <%= f.check_box :automation %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :frequency, 'Frequency' %><br>
+          <%= f.text_field :frequency %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :album_id, 'Album ID' %><br>
+          <%= f.text_field :album_id %>
+        </div>
+      <div class="actions">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+      </br>
+      
+      </div>
+    </div>
+  </div><br>
+<%end%>
