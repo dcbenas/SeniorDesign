@@ -70,6 +70,16 @@ class AlbumsController < ApplicationController
     end  
   end
 
+  def add_track
+      @album = Album.find(params[:album_id])
+  end
+
+  def new_track
+      @album = Album.find(params[:album_id])
+      @track = @album.tracks.new
+      @track.artist = @album.artist
+  end
+
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy

@@ -32,8 +32,8 @@
 
 <p>
   <strong>Album:</strong>
-  <%= @track.album %>
+  <%= @track.album.albumTitle %>
 </p>
 
 <%= link_to 'Edit', edit_track_path(@track) %> |
-<%= link_to 'Add Another', new_track_path %>
+<%= link_to 'Add Another', album_new_track_path(@track.album.id) %>

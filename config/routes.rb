@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :tracks
   resources :albums do
     patch "program"
+    post "add_track"
+    get "new_track"
     collection do 
       get "programmed"
     end
