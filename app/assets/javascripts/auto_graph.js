@@ -59,7 +59,7 @@ function displayAutoHeatmap(filter) {
             gridSize = Math.floor(width / 24),
             legendElementWidth = gridSize*2,
             buckets = block_number,
-            colors = ["#C49CD3","#B37FC7","#A263BB","#8F4BAA","#773E8E","#5F3271"],
+            colors = ["#FDBA86","#FDAE72","#FDA35E","#FC974A","#FC8C36","#FC8428"],
             days = ["Mo", "Tu", "We", "Th", "Fr", "Sa","Su"],
             times = ["12a", "1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p"];
 
@@ -99,7 +99,7 @@ function displayAutoHeatmap(filter) {
         .offset([0,0])
         .html(function(d) {
           return d.showName + "<br>" +
-                 "Percent of Auto: " + d.percent_auto + "<br>";
+                 "Percent of Auto: " + d.total + "<br>";
         });
       // render heatmap
       var heatMap = svg.selectAll(".hour")

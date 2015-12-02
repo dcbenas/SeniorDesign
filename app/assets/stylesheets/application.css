@@ -19,7 +19,15 @@
  	font-family: "Open Sans", sans-serif;
  }
 
-h1 {
-	padding-left: 17%;
+
+#sidebar {
+	padding-top: 10%;
 }
 
+a:link {
+	text-decoration: none;
+}
+
+#title {
+	padding-left: 6.5%;
+}
