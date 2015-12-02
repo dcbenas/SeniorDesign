@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120191126) do
+ActiveRecord::Schema.define(version: 20151202052256) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "mediaType"
@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(version: 20151120191126) do
     t.integer  "recordingYear"
     t.string   "spotify"
     t.string   "notes"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "programmed",    default: false
   end
 
   create_table "tracks", force: :cascade do |t|

@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   resources :tracks
-  resources :albums
+  resources :albums do
+    patch "program"
+    collection do 
+      get "programmed"
+    end
+  end
   resources :graph
+ # get '/programmed' => 'albums#programmed'
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

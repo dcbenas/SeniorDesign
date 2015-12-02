@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all
+    @albums = Album.all.where(:programmed => false)
   end
 
   # GET /albums/1
@@ -20,6 +20,8 @@ class AlbumsController < ApplicationController
   # GET /albums/1/edit
   def edit
   end
+
+
 
   # POST /albums
   # POST /albums.json
@@ -49,6 +51,23 @@ class AlbumsController < ApplicationController
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def programmed
+    @albums = Album.all.where(:programmed => true)
+  end
+
+  def program
+    @album = Album.find(params[:album_id])
+    respond_to do |format|
+      if @album.update(:programmed => true)
+        format.html { redirect_to new_track_path, notice: 'Album was successfully programmed.' }
+        format.json { render :show, status: :ok, location: @album }
+      else
+        format.html { render :index }
+        format.json { render json: @album.errors, status: :unprocessable_entity }
+      end
+    end  
   end
 
   # DELETE /albums/1
