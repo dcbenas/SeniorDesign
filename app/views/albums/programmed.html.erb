@@ -22,10 +22,9 @@
             <!-- <span class="badge">8</span> -->
             <%= link_to 'Incoming Albums', albums_path %>
           </li>
-          <!-- <li class="list-group-item">
-            <span class="badge">3</span>
-            <a href="claimed.html">Your Claimed Albums</a>
-          </li> -->
+          <li class="list-group-item">
+            <%= link_to 'Programmed Albums', programmed_albums_path %>
+          </li>
         </ul>
     </div>
   </div>
@@ -44,6 +43,7 @@
             <th>Recording Year</th>
             <th>Spotify</th>
             <th>Notes</th>
+            <th>New Tracks</th>
             <th>Edit</th>
             <th>Reject</th>
           </tr>
@@ -59,6 +59,7 @@
               <td><%= album.recordingYear %></td>
               <td><a href=<%= album.spotify %>>Listen Here!</a></td>
               <td><%= album.notes %></td>
+              <td><%= link_to 'New Tracks', new_track_path %></td>
               <td><%= link_to 'Edit', edit_album_path(album) %></td>
               <td><%= link_to 'Reject', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
