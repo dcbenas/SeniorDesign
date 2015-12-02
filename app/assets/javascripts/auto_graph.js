@@ -2,14 +2,14 @@
 
 var block_number = 40;
 
-function displayHeatmap(filter) {
-  // Rewrite heatmap title with appropriate text
-  $("#heatmap_label").text("Heatmap: " + filter)
+function displayAutoHeatmap(filter) {
+  // // Rewrite heatmap title with appropriate text
+  // $("#heatmap_label").text("Heatmap: " + filter)
 
   // Remove previous chart
   d3.select("svg").remove();
   // Render heatmap 
-  d3.csv("/show_data.csv",
+  d3.csv("/auto.csv",
     function(d) { 
       // switch heatmap data source based on button clicked
       switch (filter) {
@@ -17,56 +17,35 @@ function displayHeatmap(filter) {
           return {
             day: +d.day,
             hour: +d.hour,
-            total: +d.listeners,
-            description: d.description,
-            showName: d.showName,
-            slug: d.slug,
-            archive_slug: d.archide_slug
+            total: +d.percent_auto,
+            showName: d.showName
           };          
         break;
       case "Listeners":
         block_number = 35;
         return {
           day: +d.day,
-          hour: +d.hour,
-          listeners: +d.listeners,
-          pageviews: +d.pageviews,
-          callerlog: +d.callerlog,
-          total: +d.listeners,
-          description: d.description,
-          showName: d.showName,
-          slug: d.slug,
-          archive_slug: d.archive_slug
+            hour: +d.hour,
+            total: +d.percent_auto,
+            showName: d.showName
         };          
       break;
       case "Pageviews":
         block_number = 50;
         return {
           day: +d.day,
-          hour: +d.hour,
-          listeners: +d.listeners,
-          pageviews: +d.pageviews,
-          callerlog: +d.callerlog,
-          total: +d.pageviews,
-          description: d.description,
-          showName: d.showName,
-          slug: d.slug,
-          archive_slug: d.archive_slug
+            hour: +d.hour,
+            total: +d.percent_auto,
+            showName: d.showName
         };          
       break;
       case "# Callers":
         block_number = 5;
         return {
           day: +d.day,
-          hour: +d.hour,
-          listeners: +d.listeners,
-          pageviews: +d.pageviews,
-          callerlog: +d.callerlog,
-          total: +d.callerlog,
-          description: d.description,
-          showName: d.showName,
-          slug: d.slug,
-          archive_slug: d.archive_slug
+            hour: +d.hour,
+            total: +d.percent_auto,
+            showName: d.showName
         };          
       break;
       }
@@ -80,7 +59,7 @@ function displayHeatmap(filter) {
             gridSize = Math.floor(width / 24),
             legendElementWidth = gridSize*2,
             buckets = block_number,
-            colors = ["#a7eaf1","#83E0EC","#60D7E6","#3DCEE1","#21BFD4","#1C9FB0"],
+            colors = ["#C49CD3","#B37FC7","#A263BB","#8F4BAA","#773E8E","#5F3271"],
             days = ["Mo", "Tu", "We", "Th", "Fr", "Sa","Su"],
             times = ["12a", "1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p"];
 
@@ -90,7 +69,7 @@ function displayHeatmap(filter) {
           .domain([0, buckets - 1, d3.max(data, function (d) { return d.total; })])
           .range(colors);
 
-      var svg = d3.select("#heatmap").append("svg")
+      var svg = d3.select("#auto_heatmap").append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
           .append("g")
@@ -120,7 +99,7 @@ function displayHeatmap(filter) {
         .offset([0,0])
         .html(function(d) {
           return d.showName + "<br>" +
-                 "Listeners: " + d.total + "<br>";
+                 "Percent of Auto: " + d.percent_auto + "<br>";
         });
       // render heatmap
       var heatMap = svg.selectAll(".hour")
@@ -186,36 +165,12 @@ function displayHeatmap(filter) {
         type = "callerlog";
       break;
     }
-    $("#listener_chart").html("");
-    // Listener chart
-    // Uses dimple library with custom fonts, data source, ordering, animation
-    //var svg = dimple.newSvg("#listener_chart", 720, 240);
-    // var myChart = new dimple.chart(svg, data);
-    // myChart.defaultColors = [
-    //   new dimple.color("#60D7E6")
-    // ]; 
-    // myChart.setBounds(50, 30, 640, 160);
-    // var x = myChart.addCategoryAxis("x", ["day", "hour"]);
-    // x.addGroupOrderRule([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]);
-    // x.fontSize = "12px";
-    // x.fontFamily = "Open Sans";
-    // var y = myChart.addMeasureAxis("y", type);
-    // y.fontSize = "12px";
-    // y.fontFamily = "Open Sans";
-    // var s = myChart.addSeries(null, dimple.plot.line);
-    // // Customized tooltips with interactivity with heatmap
-    // s.getTooltipText = function(e){
-    //   $("rect[hour=" + e["xField"][1] + '][day='+ e["x"] + "]").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-    //   return [dayOfWeekAsString(e["x"]), "Hour: " + e["xField"][1], "Listeners:" + e["yValueList"][0]];
-    // }
-    // myChart.draw();
   });
 }
 // Display all by default
 var ready;
 ready = function() {
-  displayHeatmap("Pageviews, Callers, & Online Listeners");
-
+  displayAutoHeatmap("Pageviews, Callers, & Online Listeners");
 };
 
 $(document).ready(ready);

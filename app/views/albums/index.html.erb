@@ -3,7 +3,7 @@
 <div class="row"> 
   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <h1>Incoming Albums</h1>
-  </div>
+</div>
 </div>
 
 <div class="container">
@@ -30,7 +30,8 @@
   </div>
 
       <!-- table -->
-  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-4">
+  <div id="albums" class="col-xs-9 col-sm-9 col-md-9 col-lg-4">
+      <input type="text" style="width:200px;" class="search form-control" placeholder="Search for..."/>
       <table class="table table-bordered table-hover table-responsive">
         <thead>
           <tr>
@@ -47,13 +48,13 @@
           </tr>
         </thead>
         <div class="row">
-          <tbody>
+          <tbody class="list">
             <% @albums.each do |album| %>
             <tr>
               <td><%= album.mediaType %></td>
-              <td><%= album.recordLabel %></td>
-              <td><%= album.albumTitle %></td>
-              <td><%= album.artist %></td>
+              <td class="recordlabel"><%= album.recordLabel %></td>
+              <td class="albumtitle"><%= album.albumTitle %></td>
+              <td class="artist"><%= album.artist %></td>
               <td><%= album.recordingYear %></td>
               <td><a href=<%= album.spotify %>>Listen Here!</a></td>
               <td><%= album.notes %></td>
@@ -65,6 +66,13 @@
           </tbody>
         </div>
       </table>
+      <script type="text/javascript">
+        var options = {
+          valueNames: [ 'artist' , 'albumtitle' , 'recordlabel']
+        };
+
+        var userList = new List('albums', options);
+      </script>
   </div> 
 </div>
 </div>
