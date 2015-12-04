@@ -30,7 +30,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
+        format.html { redirect_to albums_path, notice: 'Album was successfully created.' }
         format.json { render :show, status: :created, location: @album }
       else
         format.html { render :new }
@@ -57,11 +57,12 @@ class AlbumsController < ApplicationController
     @albums = Album.all.where(:programmed => true)
   end
 
+  # POST /albums/id/programmed
   def program
     @album = Album.find(params[:album_id])
     respond_to do |format|
       if @album.update(:programmed => true)
-        format.html { redirect_to new_track_path, notice: 'Album was successfully programmed.' }
+        format.html { redirect_to album_new_track_path(@album.id), notice: 'Album was successfully programmed.' }
         format.json { render :show, status: :ok, location: @album }
       else
         format.html { render :index }
