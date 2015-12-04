@@ -31,12 +31,20 @@
                 <%= link_to 'Programmed Albums', programmed_albums_path %>
           </li>
           <li class="list-group-item">
-                Help
+                <%= link_to 'Help', help_path %>
           </li>
       </ul>
     </div>
       </div>
       <div class="col-xs-9">
+        <div class="field form-group">
+          <%= f.label :number, 'Track Number' %><br>
+          <%= f.text_field :number %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :side, 'CD Side' %><br>
+          <%= f.text_field :side %>
+        </div>
         <div class="field form-group">
           <%= f.label :name, 'Name' %><br>
           <%= f.text_field :name %>
@@ -68,5 +76,5 @@
       
       </div>
     </div>
-  </div><br>
+  </div>
 <%end%>

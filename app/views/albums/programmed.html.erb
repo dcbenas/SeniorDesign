@@ -26,7 +26,7 @@
             <%= link_to 'Programmed Albums', programmed_albums_path %>
           </li>
           <li class="list-group-item">
-                Help
+                <%= link_to 'Help', help_path %>
           </li>
         </ul>
     </div>
@@ -47,6 +47,7 @@
             <th>Spotify</th>
             <th>Notes</th>
             <th>New Tracks</th>
+            <th>View Track</th>
             <th>Edit</th>
             <th>Reject</th>
           </tr>
@@ -63,6 +64,7 @@
               <td><a href=<%= album.spotify %>>Listen Here!</a></td>
               <td><%= album.notes %></td>
               <td><%= link_to 'New Tracks', album_new_track_path(album.id) %></td>
+              <td><%= link_to 'View Tracks', album_tracks_path(album.id) %></td>
               <td><%= link_to 'Edit', edit_album_path(album) %></td>
               <td><%= link_to 'Reject', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>

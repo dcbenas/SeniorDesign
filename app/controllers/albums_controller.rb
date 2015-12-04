@@ -21,7 +21,11 @@ class AlbumsController < ApplicationController
   def edit
   end
 
-
+  def tracks
+    @album = Album.find(params[:album_id])
+    @tracks = @album.tracks.all
+    @album_title = @tracks.first.album.albumTitle
+  end
 
   # POST /albums
   # POST /albums.json

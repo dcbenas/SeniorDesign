@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     patch "program"
     post "add_track"
     get "new_track"
+    get "tracks"
     collection do 
       get "programmed"
     end
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+  get 'help' => 'welcome#help'
+
 
 
   # Example of regular route:
