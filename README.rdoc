@@ -1,28 +1,20 @@
-== README
+# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Ruby/Rails Version
+This application uses the most recent version of Ruby and Rails as of 12/8/2015. Please make sure to have an updated version of both before attempting to compile.
 
-Things you may want to cover:
+## DB Config / Initialization
+Depending on the configuration of your database and whether or not you want to use your own existing database, it may be necessary to use a different config method. 
 
-* Ruby version
+### Using default SQLite3 database. 
+Using the default database is the easiest way of going about setting this up. Simply fork this repository and run `bundle install` and `rake db:migrate`.
 
-* System dependencies
+### Using other databases.
+Depending on whether or not Rails has ActiveRecord support for the database of your choice, it may be necessary to modify `db\schema` along with the `database.yml` file. This depends on the database that you are running and should be modified as such.
 
-* Configuration
+## Modifying existing source code.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### Adding new functionality.
+If you want to add new functionality or examine pre-existing functions, you probably want to look in `app\controller`. Here you can add database functionality on the controller level and integrate any other endpoints/APIs you may wish to use.
+The frontend is contained in `app\views` and this can be updated as such.  
+Schema motifications can be done in `db\schema.rb`.
